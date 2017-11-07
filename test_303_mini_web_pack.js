@@ -4,6 +4,7 @@ var fs = require("fs");
 var path = require('path');
 
 http.createServer(function(req,res){
+    console.log("Server Start...");
     //获取用户请求的路径，req.url并处理
     var pathname = url.parse(req.url).pathname;
     
