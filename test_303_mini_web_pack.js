@@ -15,7 +15,6 @@ http.createServer(function(req,res){
 
     //获取扩展名
     var extname = path.extname(pathname);
-
     fs.readFile("./static/" + pathname,function(err,data){
         if(err){
             fs.readFile("./static/404.html",function(err,data){
