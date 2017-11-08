@@ -1,2 +1,2 @@
 # node_test
-node练习项目集合
+node练习
