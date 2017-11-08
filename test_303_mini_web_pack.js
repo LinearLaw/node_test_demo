@@ -12,19 +12,23 @@ http.createServer(function(req,res){
     if(pathname == "/"){
         pathname = "index.html";
     }
-
     //获取扩展名
     var extname = path.extname(pathname);
-    fs.readFile("./static/" + pathname,function(err,data){
-        if(err){
-            fs.readFile("./static/404.html",function(err,data){
-                res.writeHead(404,{"Content-type":"text/html;charset=UTF8"});
-                res.end(data);
-            })
-            return;
-        }
-
-        res.writeHead(200,{"Content-type":"text/html"});
-        res.end(data);
+    fs.readFile("./mime.json",function(err,data){
+        var mimeObj = JSON.parse(data);
+        console.log(pathname,mimeObj[extname]);
+        
+        fs.readFile("./static/" + pathname,function(err,data){
+            if(err){
+                fs.readFile("./static/404.html",function(err,data){
+                    res.writeHead(404,{"Content-type":mimeObj[extname]});
+                    res.end(data);
+                })
+                return;
+            }
+            res.writeHead(200,{"Content-type":mimeObj[extname]});
+            res.end(data);
+        })
     })
+    
 }).listen(3000,"127.0.0.1");
