@@ -17,7 +17,9 @@ app.use(express.static("./public"));
 app.use(express.static("./uploads"));
 
 //4、配置路由规则， 路由规则处理映射到相应的router方法中
+//4.1、首页
 app.get("/",router.showIndex);
+//4.2、具体某一个文件夹的内部
 app.get("/:albumName",router.showAlbum);
 
 //5、使用自定义的中间件，当上述所有的路由规则都无法进行匹配的时候，呈递默认页面

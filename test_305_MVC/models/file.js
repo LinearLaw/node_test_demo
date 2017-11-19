@@ -42,7 +42,7 @@ exports.getAllAlbums = (callback)=>{
                 if(stats.isDirectory()){
                     allAlbums.push(files[i]);
                 }
-                iteratore(i+1);
+                iterator(i+1);
             })
         })(0);//自执行迭代
     })
@@ -71,7 +71,7 @@ exports.getAllImagesByAlbumName = (albumName,callback)=>{
                 if(stats.isFile()){
                     allImages.push(files[i]);
                 }
-                iteratore(i+1);
+                iterator(i+1);
             })
         })(0);//自执行迭代
     })
