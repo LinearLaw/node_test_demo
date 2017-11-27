@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <img id="imgs" src="" alt="">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        var url = "http://303ecdfd.ngrok.io"
+        $.ajax({
+            url:url,
+            type:"get",
+            success:function(data){
+                console.log(data);
+                // document.write(data);
+                $("#title").html(data.text);
+                $("#imgs").attr("src",data.url);
+            },error:function(){
+
+            }
+        })
+    </script>
+</body>
+</html>
