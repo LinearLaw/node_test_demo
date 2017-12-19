@@ -1,0 +1,25 @@
+{
+  "name": "github_type",
+  "version": "1.0.0",
+  "description": "node练习",
+  "main": "test_303_mini_web_pack.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinearLaw/node_test_demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LinearLaw/node_test_demo/issues"
+  },
+  "homepage": "https://github.com/LinearLaw/node_test_demo#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "formidable": "^1.1.1"
+  }
+}

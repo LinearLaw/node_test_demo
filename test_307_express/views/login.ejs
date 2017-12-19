@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <div class="login_area">
+        <p>
+            <input type="text" name="username" id="username">
+        </p>
+        <p>
+            <input type="text" name="pwd" id="pwd">
+        </p>
+        <p>
+            <button id="login">LOGIN NOW!</button>
+        </p>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $("#login").click(function(){
+            $.ajax({
+                type:"POST",
+                data:{
+                    "userName":$("#username").val(),
+                    "pwd":$("#pwd").val()
+                },
+                success:function(data){
+                    console.log(data);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

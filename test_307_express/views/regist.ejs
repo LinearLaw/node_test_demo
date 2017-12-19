@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SIGN UP</h1>
+    <div class="login_area">
+        <p>
+            <input type="text" name="username" id="username">
+        </p>
+        <p>
+            <input type="text" name="pwd" id="pwd">
+        </p>
+        <p>
+            <input type="text" name="pwd" id="againpwd">
+        </p>
+        <p>
+            <button id="login">SIGN UP NOW!</button>
+        </p>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+        $("#login").click(function(){
+            if($("#pwd").val()!=$("#againpwd").val()){
+                alert("密码不一致");
+                return;
+            }
+            $.ajax({
+                type:"POST",
+                data:{
+                    "userName":$("#username").val(),
+                    "pwd":$("#pwd").val()
+                },
+                success:function(data){
+                    console.log(data);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
