@@ -6,7 +6,7 @@ var formidable = require("formidable");
 var db = require("./model/db.js");
 
 //3、md5用于加密数据
-var md5 = require("./model/md5.js");
+// var md5 = require("./model/md5.js");
 
 //4、配置模板引擎，使用ejs
 app.set("view engine","ejs");
@@ -31,8 +31,8 @@ app.get("/doregist",(req,res,next)=>{
     var userName = req.qurey.userName;
     var pwd = req.query.pwd;
 
-    //（1）、数据加密规则，可以自己定义，md5加密不可回退
-    pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
+    //（1）、数据加密规则，可以自己定义，md5加密不可回退======>暂时不加密
+    // pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
     //（2）、将用户名和密码存入数据库，调用DAO方法，访问数据库的操作都集成在DAO进行
     db.insertOne("users",{
         "userName":userName,
@@ -51,7 +51,9 @@ app.post("/dologin",(req,res,next)=>{
     form.parse(req,(err,fields,files)=>{
         var userName = fields.userName;
         var pwd = fields.pwd;
-        pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
+
+        //加密查询数据======>暂时不加密
+        // pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
 
         db.find("users",{"userName":userName},(err,result)=>{
             if(result.length == 0){
