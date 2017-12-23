@@ -27,23 +27,27 @@ app.get("/login",(req,res,next)=>{
 
 //7、接口
 //  7.1、注册接口
-app.get("/doregist",(req,res,next)=>{
-    var userName = req.qurey.userName;
-    var pwd = req.query.pwd;
-
-    //（1）、数据加密规则，可以自己定义，md5加密不可回退======>暂时不加密
-    // pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
-    //（2）、将用户名和密码存入数据库，调用DAO方法，访问数据库的操作都集成在DAO进行
-    db.insertOne("users",{
-        "userName":userName,
-        "pwd":pwd
-    },(err,result)=>{
-        if(err){
-            res.send("-1");
-            return;
-        }
-        res.send("1");
+app.post("/doregist",(req,res,next)=>{
+    var form = new formidable.IncomingForm();
+    form.parse(req,(err,fields,files)=>{
+        var userName = fields.userName;
+        var pwd = fields.pwd;
+        //（1）、数据加密规则，可以自己定义，md5加密不可回退======>暂时不加密
+        // pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
+        //（2）、将用户名和密码存入数据库，调用DAO方法，访问数据库的操作都集成在DAO进行
+        db.insertOne("user",{
+            "userName":userName,
+            "pwd":pwd
+        },function(err,result){
+            if(err){
+                res.send(err);
+                return;
+            }
+            res.send("1");
+        })
     })
+
+
 })
 //  7.2、登录接口
 app.post("/dologin",(req,res,next)=>{
@@ -55,7 +59,7 @@ app.post("/dologin",(req,res,next)=>{
         //加密查询数据======>暂时不加密
         // pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
 
-        db.find("users",{"userName":userName},(err,result)=>{
+        db.find("user",{"userName":userName},(err,result)=>{
             if(result.length == 0){
                 res.send("-2");
                 return;

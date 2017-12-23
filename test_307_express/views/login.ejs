@@ -20,7 +20,9 @@
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         $("#login").click(function(){
+            var url = "http://127.0.0.1:3000/dologin"
             $.ajax({
+                url:url,
                 type:"POST",
                 data:{
                     "userName":$("#username").val(),

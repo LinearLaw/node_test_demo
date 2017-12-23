@@ -28,7 +28,9 @@
                 alert("密码不一致");
                 return;
             }
+            var url = "http://127.0.0.1:3000/doregist"
             $.ajax({
+                url:url,
                 type:"POST",
                 data:{
                     "userName":$("#username").val(),
