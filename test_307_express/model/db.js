@@ -12,15 +12,14 @@ function _connectDB(callback){
             callback(err,null);
             return;
         }
-        callback(err,db);
+        callback(err, db);
     })
 }
 
 //1、插入一条数据
 exports.insertOne = function(collectionName , json , callback){
     _connectDB(function(err,db){
-        console.log(db.collection(collectionName));
-        db.collection(collectionName).insert(json).then(function(err,result){
+        db.collection(collectionName).insert(json).then(function(result){
             callback(err,result);
             //每次进行数据库操作的终了，都需要关闭数据库的链接
             db.close();

@@ -1,1 +1,0 @@
-mongod --dbpath F:\Can_we_found_zzz\Dragon_Kill_Set\img\2017-10-15\17-11-6-node_test\github_type\MongoData
