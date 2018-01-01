@@ -67,6 +67,8 @@ app.post("/dologin",(req,res,next)=>{
             var findPwd = result[0].pwd;
 
             if(pwd == findPwd){
+                req.session.lg_id = new Date().getTime() + Math.random().toString(36).substr(2);
+                req.session.username = username;
                 res.send({code:"1",data:result});
             }else{
                 res.send({code:"-1",data:result});
