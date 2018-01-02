@@ -55,10 +55,12 @@ app.post("/dologin",(req,res,next)=>{
     form.parse(req,(err,fields,files)=>{
         var userName = fields.userName;
         var pwd = fields.pwd;
-
         //加密查询数据======>暂时不加密
+        /**
+         * @desc 一般地，为了安全性起见，存储在数据库中的密码都是密文存储
+         *          明文存储有一定风险性
+         */
         // pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
-
         db.find("users",{"username":userName},(err,result)=>{
             if(result.length == 0){
                 res.send({code:"-2",data:result});
