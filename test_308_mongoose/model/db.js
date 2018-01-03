@@ -20,3 +20,5 @@ mongoose.connection.on("error",(err)=>{
 mongoose.connection.on("disconnected",()=>{
     console.log("数据库断开连接。")
 })
+
+module.exports = mongoose;
