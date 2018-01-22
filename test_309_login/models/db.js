@@ -18,7 +18,7 @@ var url = "http://127.0.0.1:27107";
  */
     init();
     function init(){
-        _connectDb((err,db)=>{
+        _connectDB((err,db)=>{
             if(err){
                 console.log("db error");
                 return;

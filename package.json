@@ -22,5 +22,8 @@
     "express": "^4.16.2",
     "formidable": "^1.1.1",
     "mongoose": "^5.0.0-rc1"
+  },
+  "devDependencies": {
+    "express-session": "^1.15.6"
   }
 }

@@ -5,10 +5,46 @@
     <title>Document</title>
 </head>
 <body>
+    <h2>登录</h2>
+    <p>账号：<input type="text" name="" value="" id="login_account"></p>
+    <p>密码：<input type="text" name="" value="" id="login_pwd"></p>
+    <p><button type="button" id="login_btn">Login Now!</button></p>
+
+    <h2>注册</h2>
+    <p>账号：<input type="text" name="" value="" id="signup_account"></p>
+    <p>密码：<input type="text" name="" value="" id="signup_pwd"></p>
+    <p><button type="button" id="signup_btn">Sign Up Now!</button></p>
     
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
-        
+        $("#login_btn").click(function(){
+            var sendData = {
+                username:$("#login_account").val(),
+                password:$("#login_pwd").val()
+            }
+            $.ajax({
+                url:"http://127.0.0.1:8090/login",
+                type:"POST",
+                data:sendData,
+                success:function(result){
+                    console.log(result);
+                }
+            })
+        })
+        $("#signup_btn").click(function(){
+            var sendData = {
+                username:$("#signup_account").val(),
+                password:$("#signup_pwd").val()
+            }
+            $.ajax({
+                url:"http://127.0.0.1:8090/regist",
+                type:"POST",
+                data:sendData,
+                success:function(result){
+                    console.log(result);
+                }
+            })
+        })
     </script>
 </body>
 </html>
