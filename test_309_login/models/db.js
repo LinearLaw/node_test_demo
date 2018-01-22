@@ -1,5 +1,5 @@
 var MongoClient = require("mongodb").MongoClient;
-var url = "http://127.0.0.1:27107";
+var url = "http://127.0.0.1:27017";
 
 /**
  * @desc 连接数据库
@@ -20,7 +20,7 @@ var url = "http://127.0.0.1:27107";
     function init(){
         _connectDB((err,db)=>{
             if(err){
-                console.log("db error");
+                console.log("db error:" + err);
                 return;
             }
             db.collection("users").createIndex(
