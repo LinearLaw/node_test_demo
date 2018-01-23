@@ -1,5 +1,5 @@
 var MongoClient = require("mongodb").MongoClient;
-var url = "http://127.0.0.1:27017";
+var url = "mongodb://127.0.0.1:27017";
 
 /**
  * @desc 连接数据库
