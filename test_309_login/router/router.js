@@ -49,7 +49,7 @@ exports.doLogin = (req,res,next)=>{
         var username = fields.username;
         var password = fields.password;
         
-        db.find("users",{"username":username},(err,result)=>{
+        db.find("users",{"username":username},function(err,result){
             if(err){
                 res.send("-5");
                 return;

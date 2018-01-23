@@ -61,23 +61,30 @@ exports.insertOne = (collectionName,json,callback)=>{
  * @desc 查找一条数据
  */
 exports.find = function(collectionName,json,C,D){
+    var result = [];
+    var callback = null;
+    var skipnumber = 0;
+    var sort = null;
+    var limit = 0;
     if(arguments.length == 3){
-        var calllback = C;
-        var skipnumber = 0;
-        var limit = 0;
+        calllback = C;
+        skipnumber = 0;
+        limit = 0;
     }else if(arguments.length == 4){
-        var callback = D;
+        callback = D;
         var args = C;
-        var skipnumber = args.pageamount * args.page || 0;
-        var limit = args.pageamount || 0;
-        var sort = args.sort || {};
+        skipnumber = args.pageamount * args.page || 0;
+        limit = args.pageamount || 0;
+        sort = args.sort || {};
     }else{
         throw new Error("find函数的参数个数必须为三个或者四个");
         return;
     }
+    
     _connectDB((err,db)=>{
         var cursor = db.db("linear").collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort);
         cursor.each((err,doc)=>{
+            
             if(err){
                 callback(err,null);
                 db.close();
@@ -86,6 +93,7 @@ exports.find = function(collectionName,json,C,D){
             if(doc != null){
                 result.push(doc);
             }else{
+                console.log(calllback);
                 callback(null,result);
                 db.close();
             }
