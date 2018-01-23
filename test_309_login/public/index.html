@@ -22,6 +22,7 @@
                 username:$("#login_account").val(),
                 password:$("#login_pwd").val()
             }
+            console.log(sendData);
             $.ajax({
                 url:"http://127.0.0.1:8090/login",
                 type:"POST",
@@ -36,6 +37,7 @@
                 username:$("#signup_account").val(),
                 password:$("#signup_pwd").val()
             }
+            console.log(sendData);
             $.ajax({
                 url:"http://127.0.0.1:8090/regist",
                 type:"POST",

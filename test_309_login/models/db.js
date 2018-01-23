@@ -1,4 +1,8 @@
 var MongoClient = require("mongodb").MongoClient;
+
+/**
+ * 注意，在这里，mongodb的url前缀不是http协议，而是mongodb协议
+ */
 var url = "mongodb://127.0.0.1:27017";
 
 /**
@@ -23,7 +27,11 @@ var url = "mongodb://127.0.0.1:27017";
                 console.log("db error:" + err);
                 return;
             }
-            db.collection("users").createIndex(
+            /**
+             * @desc connect传递过来的db是一整个的db，
+             *         需要指定db的数据库名称，再选择collections的名称
+             */
+            db.db("linear").collection("users").createIndex(
                 {"username":1},
                 null,
                 (err,results)=>{
@@ -42,7 +50,7 @@ var url = "mongodb://127.0.0.1:27017";
  */
 exports.insertOne = (collectionName,json,callback)=>{
     _connectDB((err,db)=>{
-        db.collection(collectionName).insertOne(json,(err,result)=>{
+        db.db("linear").collection(collectionName).insertOne(json,(err,result)=>{
             callback(err,result);
             db.close();
         })
@@ -52,7 +60,7 @@ exports.insertOne = (collectionName,json,callback)=>{
 /**
  * @desc 查找一条数据
  */
-exports.find = (collectionName,json,C,D)=>{
+exports.find = function(collectionName,json,C,D){
     if(arguments.length == 3){
         var calllback = C;
         var skipnumber = 0;
@@ -68,7 +76,7 @@ exports.find = (collectionName,json,C,D)=>{
         return;
     }
     _connectDB((err,db)=>{
-        var cursor = db.collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort);
+        var cursor = db.db("linear").collection(collectionName).find(json).skip(skipnumber).limit(limit).sort(sort);
         cursor.each((err,doc)=>{
             if(err){
                 callback(err,null);
