@@ -22,13 +22,28 @@
                 username:$("#login_account").val(),
                 password:$("#login_pwd").val()
             }
-            console.log(sendData);
             $.ajax({
                 url:"http://127.0.0.1:8090/login",
                 type:"POST",
                 data:sendData,
                 success:function(result){
-                    console.log(result);
+                    if(result == "-2"){
+                        console.log("ERROR -2 :内部服务错误");
+                        return;
+                    }
+                    if(result == "1"){
+                        console.log("Success :成功登录");
+                        return;
+
+                    }
+                    if(result == "-1"){
+                        console.log("ERROR -1 :查无此号");
+                        return;
+                    }
+                    if(result == "-5"){
+                        console.log("ERROR -3 :内部服务错误");
+                        return;
+                    }
                 }
             })
         })
@@ -37,13 +52,23 @@
                 username:$("#signup_account").val(),
                 password:$("#signup_pwd").val()
             }
-            console.log(sendData);
             $.ajax({
                 url:"http://127.0.0.1:8090/regist",
                 type:"POST",
                 data:sendData,
                 success:function(result){
-                    console.log(result);
+                    if(result == "-1"){
+                        console.log("ERROR -1 :该账号已经注册");
+                        return;
+                    }
+                    if(result == "1"){
+                        console.log("Success :成功注册");
+                        return;
+                    }
+                    if(result == "-3"){
+                        console.log("ERROR -3 :内部服务错误");
+                        return;
+                    }
                 }
             })
         })

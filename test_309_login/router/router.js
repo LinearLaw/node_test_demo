@@ -15,29 +15,29 @@ exports.showRegist = (req,res,next)=>{
         form.parse(req,(err,fields,files)=>{
             var username = fields.username;
             var password = fields.password;
-        })
-        db.find("users",{"username":username},(err,result)=>{
-            if(err){
-                res.send("-3");
-                return;
-            }
-            if(result.length != 0){
-                res.send("-1");
-                return;
-            }
-            db.insertOne("users",{
-                "username":username,
-                "password":password,
-                "avatar":"moren.jpg"
-            },(err,result)=>{
+            db.find("users",{"username":username},(err,result)=>{
                 if(err){
                     res.send("-3");
                     return;
                 }
-                req.session.login = "1";
-                req,session.username = username;
+                if(result.length != 0){
+                    res.send("-1");
+                    return;
+                }
+                db.insertOne("users",{
+                    "username":username,
+                    "password":password,
+                    "avatar":"moren.jpg"
+                },(err,result)=>{
+                    if(err){
+                        res.send("-3");
+                        return;
+                    }
+                    req.session.login = "1";
+                    req.session.username = username;
 
-                res.send("1");
+                    res.send("1");
+                })
             })
         })
     })
@@ -59,7 +59,7 @@ exports.doLogin = (req,res,next)=>{
                 return;
             }
             if(password == result[0].password){
-                res.session.login = "1";
+                req.session.login = "1";
                 req.session.username = username;
                 res.send("1");
                 return;
