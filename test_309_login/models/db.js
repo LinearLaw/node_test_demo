@@ -3,7 +3,24 @@ var MongoClient = require("mongodb").MongoClient;
 /**
  * 注意，在这里，mongodb的url前缀不是http协议，而是mongodb协议
  */
-var url = "mongodb://127.0.0.1:27017";
+// var url = "mongodb://localhost:27017";
+
+/* 1、使用Default方式认证连接  */
+var MongoClient = require('mongodb').MongoClient,
+  f = require('util').format,
+  assert = require('assert');
+
+var user = encodeURIComponent('root');
+var password = encodeURIComponent('root');
+var authMechanism = 'DEFAULT';
+
+// Connection URL
+var url = f('mongodb://%s:%s@localhost:27017/?authMechanism=%s',
+  user, password, authMechanism);
+/* 1、使用Default方式认证连接 */
+
+/* 2、使用MONGODB-CR 进行连接 */
+// var url = 'mongodb://root:root@localhost:27017/?authMechanism=MONGODB-CR';
 
 /**
  * @desc 连接数据库
