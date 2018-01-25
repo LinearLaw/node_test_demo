@@ -3,20 +3,19 @@ var MongoClient = require("mongodb").MongoClient;
 /**
  * 注意，在这里，mongodb的url前缀不是http协议，而是mongodb协议
  */
-// var url = "mongodb://localhost:27017";
+var url = "mongodb://localhost:27017";
 
-/* 1、使用Default方式认证连接  */
-var MongoClient = require('mongodb').MongoClient,
-  f = require('util').format,
-  assert = require('assert');
+/* 1、使用Default方式认证连接  *//*
+    var f = require('util').format,
+    var assert = require('assert');
 
-var user = encodeURIComponent('root');
-var password = encodeURIComponent('root');
-var authMechanism = 'DEFAULT';
+    var user = encodeURIComponent('root');
+    var password = encodeURIComponent('root');
+    var authMechanism = 'DEFAULT';
 
-// Connection URL
-var url = f('mongodb://%s:%s@localhost:27017/?authMechanism=%s',
-  user, password, authMechanism);
+    // Connection URL
+    var url = f('mongodb://%s:%s@localhost:27017/?authMechanism=%s',
+      user, password, authMechanism);
 /* 1、使用Default方式认证连接 */
 
 /* 2、使用MONGODB-CR 进行连接 */
@@ -79,20 +78,16 @@ exports.insertOne = (collectionName,json,callback)=>{
  *//*
 exports.find = function(collectionName,json,C,D){
     var result = [];
-    var callback = null;
-    var skipnumber = 0;
-    var sort = null;
-    var limit = 0;
     if(arguments.length == 3){
-        calllback = C;
-        skipnumber = 0;
-        limit = 0;
+        var calllback = C;
+        var skipnumber = 0;
+        var limit = 0;
     }else if(arguments.length == 4){
-        callback = D;
+        var callback = D;
         var args = C;
-        skipnumber = args.pageamount * args.page || 0;
-        limit = args.pageamount || 0;
-        sort = args.sort || {};
+        var skipnumber = args.pageamount * args.page || 0;
+        var limit = args.pageamount || 0;
+        var sort = args.sort || {};
     }else{
         throw new Error("find函数的参数个数必须为三个或者四个");
         return;
