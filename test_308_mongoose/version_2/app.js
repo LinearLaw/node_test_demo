@@ -8,9 +8,13 @@ app.use(express.static("./public"));
  * @description  路由
  */
 app.get("/",(req,res)=>{
+  console.log("用户访问了主页");
   res.send("Welcome!");
 })
-
+app.get("/login",(req,res)=>{
+  console.log("用户访问了登录页");
+  res.render("login");
+})
 /**
  * @description  当请求无效时，返回提示请求出错。
  */

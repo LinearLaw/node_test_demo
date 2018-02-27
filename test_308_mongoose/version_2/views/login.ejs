@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-3.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="login_module">
+        <div class="col-md-4"></div>
+        <form class="col-md-4">
+            <div class="form-group">
+                <label for="inputUsername">User Name</label>
+                <input type="text" class="form-control" id="inputUsername" placeholder="User Name">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+            <button type="submit" id="submitInput" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <script src="jquery-1.12.2.js"></script>
+    <script src="bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    <script>
+        $("#submitInput").click(function(event){
+            event.preventDefault();
+            var username = $("#inputUsername").val();
+            var pwd = $("#inputPassword").val();
+            if(!username){
+                return;
+            }
+            if(!pwd){
+                return;
+            }
+            console.log("验证通过")
+            // $.ajax({
+                
+            // })
+            return;
+        })
+    </script>
+</body>
+</html>
