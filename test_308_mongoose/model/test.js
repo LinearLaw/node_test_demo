@@ -16,6 +16,7 @@ let initUser = {
             if(err){console.log("Error:" + err)}
             else{
                 console.log("Res: ",res);
+                console.log("初始化插入数据成功")
             }
         })
     },
@@ -134,6 +135,5 @@ let initUser = {
     }
 }
 
-
-
-initUser.insert();
+// initUser.insert();
+module.exports = initUser;
