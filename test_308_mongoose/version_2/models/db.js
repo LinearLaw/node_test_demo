@@ -16,5 +16,7 @@ db.once("error",(cb)=>{
     console.log("Error:连接到user数据库失败");
     mongoose.disconnect();
 })
-
+db.once("disconnected",()=>{
+    console.log("数据库断开连接。")
+})
 module.exports = db;

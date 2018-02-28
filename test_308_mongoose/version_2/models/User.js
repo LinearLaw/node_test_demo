@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     "userId"    :   {   "type"  :   String  },
     "shopId"    :   {   "type"  :   String  }
 })
-const User = mongoose.model("User",userSchema)
+const User = mongoose.model("Adminuser",userSchema)
 
 // userSchema.methods.findShop = (shopid,callback)=>{
 //     this.model("User").find({

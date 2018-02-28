@@ -40,6 +40,7 @@ exports.userSignup = function(req,res){
         return;
       }
       User.findOne({"username":tempUsername},function(err,result){
+        console.log(err)
         if(result.length>0){
           res.send({
             status:6,
@@ -47,18 +48,23 @@ exports.userSignup = function(req,res){
           })
           return;
         }
-        User.create({
-          "username"  :   fields.username,
-          "pwd"       :   tempPwd,
-          "createTime":   new Date().getTime(),
-          "userId"    :   config.idCreate.appleSignal(),
-          "shopId"    :   config.idCreate.orangeSignal()
-        },(err)=>{
+
+        let reqObj = {
+            "username"  :   tempUsername,
+            "pwd"       :   tempPwd
+        }
+        reqObj["createTime"] = new Date().getTime()
+        reqObj["userId"]    =   config.idCreate.appleSignal()
+        reqObj["shopId"]    =   config.idCreate.orangeSignal()
+        let newUser = new User(reqObj);
+        newUser.save(function(err){
           res.send({
-            status:1,
-            content:"success"
+              status:1,
+              content:"success"
           })
         })
+        
+
       })
     })
 }

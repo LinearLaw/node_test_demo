@@ -3,7 +3,7 @@
  *      和数据库的连接、增删操作已经集成到了mongoose中
  */
 
-const settings = require("../../test_307_express/settings.js")
+const settings = require("../../../test_307_express/settings.js")
 const mongoose = require("mongoose");
 
 //链接数据库
