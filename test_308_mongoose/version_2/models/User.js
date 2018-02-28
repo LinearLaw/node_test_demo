@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
     "userId"    :   {   "type"  :   String  },
     "shopId"    :   {   "type"  :   String  }
 })
-const User = mongoose.model("Adminuser",userSchema)
 
 // userSchema.methods.findShop = (shopid,callback)=>{
 //     this.model("User").find({
@@ -28,5 +27,12 @@ const User = mongoose.model("Adminuser",userSchema)
 //         console.log("shop插入user表成功");
 //     })
 // }
+userSchema.methods.findUser = function(name,callback){
+    this.model("Adminuser").find({"username":name},callback)
+}
+userSchema.methods.addUser = function(body,callback){
+    
+}
+const User = mongoose.model("Adminuser",userSchema)
 
 module.exports = User;

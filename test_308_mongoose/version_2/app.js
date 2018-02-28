@@ -24,6 +24,10 @@ app.get("/login",(req,res)=>{
   console.log("用户访问了登录页");
   res.render("login");
 })
+app.get("/signup",(req,res)=>{
+  console.log("用户访问了注册页");
+  res.render("signup");
+})
 
 app.post("/dosignup",router.userSignup)
 /**

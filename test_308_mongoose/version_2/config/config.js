@@ -21,7 +21,7 @@ module.exports = {
   //1、端口号
   port : 3000,
   //2、db url
-  db_url:"mongodb://127.0.0.1:27017/abcde",
+  db_url:"mongodb://127.0.0.1:27017/linear",
   //3、session config
   session:{
     name: 'SID',

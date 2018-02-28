@@ -3,8 +3,9 @@
  */
 
 const mongoose = require("mongoose");
-const config = require("../config/config.js")
-const db = mongoose.createConnection(config.db_url);
+const config = require("../config/config.js");
+mongoose.connect(config.db_url);
+const db = mongoose.connection;
 
 mongoose.set("debug",true);
 mongoose.Promise = global.Promise;

@@ -39,8 +39,7 @@ exports.userSignup = function(req,res){
         })
         return;
       }
-      User.findOne({"username":tempUsername},function(err,result){
-        console.log(err)
+      User.find({"username":tempUsername},function(err,result){
         if(result.length>0){
           res.send({
             status:6,
@@ -58,13 +57,11 @@ exports.userSignup = function(req,res){
         reqObj["shopId"]    =   config.idCreate.orangeSignal()
         let newUser = new User(reqObj);
         newUser.save(function(err){
-          res.send({
-              status:1,
-              content:"success"
-          })
+            res.send({
+                status:1,
+                content:"success"
+            })
         })
-        
-
       })
     })
 }
