@@ -13,7 +13,10 @@ const idCreate = {
     return uuid.v4();
   }
 }
-
+const regConfig = {
+    username:/^[A-Za-z0-9]{6,16}$/,
+    pwd:/^[A-Za-z0-9]{8,16}$/
+  }
 module.exports = {
   //1、端口号
   port : 3000,
@@ -33,8 +36,5 @@ module.exports = {
   idCreate:idCreate,
 
   //5、表单验证规则
-  regConfig:{
-    username:/^[A-Za-z0-9]+{6,16}$/,
-    pwd:/^[A-Za-z0-9]{8,16}$/
-  }
+  regConfig:regConfig
 }
