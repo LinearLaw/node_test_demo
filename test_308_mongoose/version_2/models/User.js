@@ -13,20 +13,20 @@ const userSchema = new mongoose.Schema({
 })
 const User = mongoose.model("User",userSchema)
 
-userSchema.methods.findShop = (shopid,callback)=>{
-    this.model("User").find({
-        "shopId":this.shopId
-    },callback())
-}
-userSchema.methods.addShop = (userId,callback)=>{
-    //shopId的生成算法需要重写
-    let shopId = new Date().getTime();
-    this.model("Shop").create({"userId":userId,"shopId":"shopId生成"},(err)=>{
-        console.log("shop插入shop表成功");
-    })
-    this.model("User").update({"userId":this.userId},{$set:{"shopId":"shopId生成"}},(err)=>{
-        console.log("shop插入user表成功");
-    })
-}
+// userSchema.methods.findShop = (shopid,callback)=>{
+//     this.model("User").find({
+//         "shopId":this.shopId
+//     },callback())
+// }
+// userSchema.methods.addShop = (userId,callback)=>{
+//     //shopId的生成算法需要重写
+//     let shopId = new Date().getTime();
+//     this.model("Shop").create({"userId":userId,"shopId":"shopId生成"},(err)=>{
+//         console.log("shop插入shop表成功");
+//     })
+//     this.model("User").update({"userId":this.userId},{$set:{"shopId":"shopId生成"}},(err)=>{
+//         console.log("shop插入user表成功");
+//     })
+// }
 
 module.exports = User;

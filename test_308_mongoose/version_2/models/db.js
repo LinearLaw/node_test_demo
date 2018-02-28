@@ -3,7 +3,8 @@
  */
 
 const mongoose = require("mongoose");
-const db = mongoose.createConnection("mongodb://127.0.0.1:27017/test");
+const config = require("../config/config.js")
+const db = mongoose.createConnection(config.db_url);
 
 mongoose.set("debug",true);
 mongoose.Promise = global.Promise;
@@ -13,6 +14,7 @@ db.once("open",(callback)=>{
 })
 db.once("error",(cb)=>{
     console.log("Error:连接到user数据库失败");
+    mongoose.disconnect();
 })
 
 module.exports = db;
