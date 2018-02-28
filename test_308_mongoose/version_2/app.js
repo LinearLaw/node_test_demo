@@ -13,6 +13,7 @@ app.all("*",function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
+
 /**
  * @description  路由
  */
@@ -20,16 +21,12 @@ app.get("/",(req,res)=>{
   console.log("用户访问了主页");
   res.send("Welcome!");
 })
-app.get("/login",(req,res)=>{
-  console.log("用户访问了登录页");
-  res.render("login");
-})
-app.get("/signup",(req,res)=>{
-  console.log("用户访问了注册页");
-  res.render("signup");
-})
+app.get("/login"  , (req,res)=>{    res.render("login");    })
+app.get("/signup" , (req,res)=>{    res.render("signup");   })
 
 app.post("/dosignup",router.userSignup)
+
+
 /**
  * @description  当请求无效时，返回提示请求出错。
  */
