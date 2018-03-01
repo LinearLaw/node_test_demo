@@ -28,11 +28,11 @@ module.exports = {
   //3、session config
   session:{
     name: 'SID',
-    secret: 'SID',
+    secret: 'keyboard cat',
     cookie: {
       httpOnly: true,
       secure:   false,
-      maxAge:   365 * 24 * 60 * 60 * 1000,
+      maxAge:   7 * 24 * 60 * 60 * 1000,
     }
   },
   //4、id生成器

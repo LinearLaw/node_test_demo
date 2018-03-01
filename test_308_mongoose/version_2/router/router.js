@@ -1,7 +1,7 @@
 const User = require("../models/User.js");
 const config = require("../config/config.js");
 const formidable = require('formidable');
-const md5 = require("../models/md5.js")
+const md5 = require("../models/md5.js");
 
 function verifyData(tempUsername,tempPwd,res,callback){
   if(!tempUsername){
@@ -58,7 +58,6 @@ exports.userSignup = function(req,res){
               "username"  :   tempUsername,
               "pwd"       :   tempPwd
           }
-          pwd = md5(md5(pwd).substr(4,7) + md5(pwd));
           reqObj["createTime"] = new Date().getTime()
           reqObj["userId"]    =   config.idCreate.appleSignal()
           reqObj["shopId"]    =   config.idCreate.orangeSignal()
@@ -90,15 +89,20 @@ exports.userLogin = function(req,res){
               })
               return;
             }
+            //加密
             tempPwd = md5(md5(tempPwd).substr(4,7) + md5(tempPwd));
             if(result&&result.username==tempUsername&&result.pwd==tempPwd){
-              
+
               res.send({
                 status:1,
                 content:"login success"
               })
               return;
             }else{
+              //token生成
+              let token = md5(tempPwd + new Date().getTime() + config.idCreate.orangeSignal())
+              res.session.SID = token;
+              res.session.username = tempUsername;
               res.send({
                 status:7,
                 content:"username or pwd error"

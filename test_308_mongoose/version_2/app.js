@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const config = require("./config/config.js");
 const router = require("./router/router.js")
+const session = require("express-session");
 
 app.set("view engine","ejs");
 app.use(express.static("./public"));
-
+app.use(session(config.session));
 app.all("*",function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
