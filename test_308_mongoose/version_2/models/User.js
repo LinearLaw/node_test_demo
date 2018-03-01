@@ -12,21 +12,10 @@ const userSchema = new mongoose.Schema({
     "shopId"    :   {   "type"  :   String  }
 })
 
-// userSchema.methods.findShop = (shopid,callback)=>{
-//     this.model("User").find({
-//         "shopId":this.shopId
-//     },callback())
-// }
-// userSchema.methods.addShop = (userId,callback)=>{
-//     //shopId的生成算法需要重写
-//     let shopId = new Date().getTime();
-//     this.model("Shop").create({"userId":userId,"shopId":"shopId生成"},(err)=>{
-//         console.log("shop插入shop表成功");
-//     })
-//     this.model("User").update({"userId":this.userId},{$set:{"shopId":"shopId生成"}},(err)=>{
-//         console.log("shop插入user表成功");
-//     })
-// }
+/**
+ * [findUser description] Schema 可以添加static下的function，这个function可以由model直接调用
+ *                               也可以添加methods下的function，这个function应该由model的实例才能进行调用
+ */
 userSchema.methods.findUser = function(name,callback){
     this.model("Adminuser").find({"username":name},callback)
 }

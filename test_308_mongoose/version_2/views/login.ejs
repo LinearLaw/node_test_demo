@@ -34,9 +34,20 @@
                 return;
             }
             console.log("验证通过")
-            // $.ajax({
-                
-            // })
+            $.ajax({
+                url:"http://127.0.0.1:3000/dologin",
+                type:"POST",
+                data:{
+                    username:username,
+                    pwd:pwd
+                },
+                success:function(res){
+                    console.log(1,res)
+                },
+                error:function(err){
+                    console.log(2,err);
+                }
+            })
             return;
         })
     </script>

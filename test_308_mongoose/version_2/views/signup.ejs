@@ -17,6 +17,10 @@
                 <label for="inputPassword">Password</label>
                 <input type="password" class="form-control" id="inputPassword" placeholder="Password">
             </div>
+            <div class="form-group">
+                <label for="inputPassword">Input Password Again</label>
+                <input type="password" class="form-control" id="reinputPassword" placeholder="Input Password Again">
+            </div>
             <button type="submit" id="submitInput" class="btn btn-default">Submit</button>
         </form>
     </div>
@@ -27,10 +31,17 @@
             event.preventDefault();
             var username = $("#inputUsername").val();
             var pwd = $("#inputPassword").val();
+            var repwd = $("#reinputPassword").val();
             if(!username){
+                console.log("用户名不存在");
                 return;
             }
             if(!pwd){
+                console.log("密码不存在");
+                return;
+            }
+            if(pwd!=repwd){
+                console.log("两次密码不一致");
                 return;
             }
             console.log("验证通过")

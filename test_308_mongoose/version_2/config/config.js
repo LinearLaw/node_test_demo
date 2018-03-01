@@ -15,7 +15,7 @@ const idCreate = {
 }
 const regConfig = {
     username:/^[A-Za-z0-9]{6,16}$/,
-    pwd:/^[A-Za-z0-9]{8,16}$/
+    pwd:/^[A-Za-z0-9]{6,16}$/
   }
 module.exports = {
   //1、端口号
