@@ -1,7 +1,7 @@
 const uuid = require("node-uuid");
 
 /**
- * [idCreate description] uuid生成
+ * [description] uuid生成
  */
 const idCreate = {
   //1、基于时间戳
@@ -13,10 +13,13 @@ const idCreate = {
     return uuid.v4();
   }
 }
+/**
+ * [description] 正则表达式配置
+ */
 const regConfig = {
     username:/^[A-Za-z0-9]{6,16}$/,
     pwd:/^[A-Za-z0-9]{6,16}$/
-  }
+}
 module.exports = {
   //1、端口号
   port : 3000,
