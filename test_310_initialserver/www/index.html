@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>这里是获取的静态页</title>
+</head>
+<body>
+    
+    <script src="jquery-3.1.1.js"></script>
+    <script>
+      $.ajax({
+        url:"/getlist",
+        type:"get",
+        success:function(data){
+          console.log(data);
+          console.log(typeof data);
+        }
+      })
+    </script>
+</body>
+</html>
