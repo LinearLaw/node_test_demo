@@ -37,7 +37,10 @@ function getHtml(i){
             content = content + temp + "\r\n " + "\r\n ";
         });
 
+        //4、拼接文件所需要的字符串
         var result = title + "\r\n  "+ "\r\n " + content; 
+
+        //5、写入到文件中
         fs.writeFile('./computer_'+i+'.txt',result,{flag:'w',encoding:'utf-8',mode:'0666'},function(err){
             if(err){
                 console.log("文件写入失败");
