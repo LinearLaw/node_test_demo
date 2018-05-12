@@ -35,7 +35,7 @@ function getHtml(i){
         var title = $(".f3").text().replace("<br>","\r\n");
         var content = "";
         $(".f2").map(function(index,item){
-            var temp = $(item).text().replace("<br>","\r\n")
+            var temp = $(item).text().replace("<br>","\r\n").trim();
             content = content + temp + "\r\n " + "\r\n ";
         });
 
