@@ -34,13 +34,13 @@ function getHtml(i){
         var content = "";
         $(".f2").map(function(index,item){
             var temp = $(item).text().replace("<br>","\r\n")
-            content = content + temp + "\r\n";
+            content = content + temp + "\r\n " + "\r\n ";
         });
 
-        var result = title + "\r\n  " + content; 
+        var result = title + "\r\n  "+ "\r\n " + content; 
         fs.writeFile('./computer_'+i+'.txt',result,{flag:'w',encoding:'utf-8',mode:'0666'},function(err){
             if(err){
-                console.log("文件写入失败")
+                console.log("文件写入失败");
             }else{
                 console.log("第"+i+"号文件写入成功");
             }
