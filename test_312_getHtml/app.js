@@ -5,6 +5,8 @@
 
 const express =require("express");
 const app = express();
+
+//request ，用来发起其他域名的请求。
 const request = require("request");
 
 const fs = require("fs");
@@ -23,7 +25,7 @@ function getHtml(i){
         //res.body或body即为所获得的html页面
         // console.log(res.body);
 
-        //1、使用iconv对body进行转码
+        //1、使用iconv对body进行转码，目标页面charset为gb2312
         body = iconv.decode(body,'gb2312');
 
         // 2、cheerio读取页面DOM
@@ -50,9 +52,12 @@ function getHtml(i){
         })
     });
 }
+
+//循环请求70个页面，为了避免异步带来的值不同的问题，
+//将i作为参数传入到函数内部
 for(var i=1;i<=70;i++){
     getHtml(i);
-}
+};
 app.listen(8888,()=>{
     console.log("服务已就绪，端口号8888");
 })
