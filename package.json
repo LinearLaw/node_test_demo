@@ -25,6 +25,9 @@
     "node-uuid": "^1.4.8"
   },
   "devDependencies": {
-    "express-session": "^1.15.6"
+    "cheerio": "^1.0.0-rc.2",
+    "express-session": "^1.15.6",
+    "iconv-lite": "^0.4.23",
+    "request": "^2.85.0"
   }
 }
