@@ -1,4 +1,11 @@
 const uuid = require("node-uuid");
+const crypto = require("crypto");
+
+function md5(password){
+    const md5 = crypto.createHash("md5");
+    const pwd = md5.update(password).digest("base64");
+    return pwd;
+}
 
 const idCreate = {
   //1、基于时间戳
@@ -9,6 +16,16 @@ const idCreate = {
   orangeSignal:function(){
     return uuid.v4();
   }
+}
+
+const md5Create = {
+    pwdCreate:function(pwd){
+        return md5(md5(pwd).substr(4,7) + md5(pwd));
+    },
+    tokenCreate:function(userId){
+        let timenow = new Date().getTime();
+        return md5(userId + timenow + idCreate.orangeSignal());
+    }
 }
 
 module.exports = {
@@ -35,6 +52,7 @@ module.exports = {
   },
   //4、id生成器
   idCreate:idCreate,
+  md5Create:md5Create,
 
   //6、接受的ip
   ipWithGet:"http://127.0.0.1:8090",
