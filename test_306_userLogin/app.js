@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
-
 const bodyParser = require("body-parser");
-
+const session = require("express-session");
 
 const config = require("./config/config.js");
 const router = require("./router/router.js");
@@ -10,6 +9,7 @@ const router = require("./router/router.js");
 global.config = config;
 
 app.use(express.static("./public"));
+app.use(session(config.session));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb',extended: true }));
 

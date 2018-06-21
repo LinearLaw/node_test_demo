@@ -1,11 +1,11 @@
 const User = require("../model/User.js");
 
 exports.doRegist = (req,res)=>{
-    //{ username:"" , pwd:"" }
+    //{ username:"" , pwd:"" , userAccount:"" }
     let acc = req.body.userAccount;
     let pwd = config.md5Create.pwdCreate(req.body.pwd);
     let name = req.body.username;
-    User.find({username:username},(err,result)=>{
+    User.find({username:name},(err,result)=>{
         try{
             if(result.length>0){
                 res.send({
@@ -34,7 +34,8 @@ exports.doRegist = (req,res)=>{
         }catch(err){
             res.send({
                 code:-1,
-                msg:"Interval Server Error"
+                msg:"Interval Server Error",
+                data:err
             })
         }
     })
@@ -42,11 +43,11 @@ exports.doRegist = (req,res)=>{
 }
 
 exports.doLogin = (req,res)=>{
-    //{ username:"" , pwd:"" }
+    //{ userAccount:"" , pwd:"" }
     let acc = req.body.userAccount;
     let pwd = config.md5Create.pwdCreate(req.body.pwd);
     User.find({userAccount:acc},(err,result)=>{
-        try{
+        // try{
             if(result.length>0){
                 if(result[0].userPwd == pwd){
                     let userId = result[0].userId;
@@ -75,11 +76,12 @@ exports.doLogin = (req,res)=>{
                     msg:"Account not exist"
                 })
             }
-        }catch(err){
-            res.send({
-                code:-1,
-                msg:"Interval Server Error"
-            })
-        }
+        // }catch(err){
+        //     res.send({
+        //         code:-1,
+        //         msg:"Interval Server Error",
+        //         data:err
+        //     })
+        // }
     })
 }

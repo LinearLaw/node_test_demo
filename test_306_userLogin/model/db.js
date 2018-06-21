@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const config = require("../config/config.js");
 
 const dbURL = config.db_url;
 const dbOption = config.db_options;
