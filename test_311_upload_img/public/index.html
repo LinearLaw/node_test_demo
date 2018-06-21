@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="file" class="fileInput" name="file" id="uploadFiles">
+    </div>
+    <div>
+        <img src="./a.bmp" alt="" class="pics">
+    </div>
+    <div>
+        <button class="sbmit">上传</button>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $("#uploadFiles").on("change",function(){
+            var r= new FileReader();
+            f=$('.fileInput')[0].files[0];
+            r.readAsDataURL(f);
+            r.onload=function (e) {
+               $(".pics").attr("src",this.result);
+            };
+        });
+        $(".sbmit").on("click",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            var titleImgSrc = $(".pics").attr("src");
+            $.ajax({
+                url:'/uploadPics',
+                method:'post',
+                data:{
+                    titleImgSrc:titleImgSrc
+                },
+                success:function(res){
+                    console.log(res);
+                    $(".pics").attr("src",res.data);
+                },
+                error:function(){
+
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>
