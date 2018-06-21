@@ -11,7 +11,7 @@ app.use(session({
 
 app.use(express.static("./public"));
 
-app.post("/regist",router.showRegist);
-app.post("/login",router.doLogin);
+//挂载路由
+app.use("/",router);
 
 app.listen(8090);

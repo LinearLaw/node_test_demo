@@ -36,6 +36,10 @@ const localIp = utils.getIp();
 //端口号
 const port = 5422;
 
+/**
+ * @desc 上传图片
+        数据格式：{ titleImgSrc："base64的字符串数据" }
+ */
 app.post("/uploadPics",(req,res)=>{
     try{
         let signal = utils.appleSignal();
@@ -67,8 +71,6 @@ app.post("/uploadPics",(req,res)=>{
             data:err
         })
     }
-
-
 })
 
 app.listen(port,()=>{
