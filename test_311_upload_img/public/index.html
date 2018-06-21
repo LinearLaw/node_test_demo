@@ -21,6 +21,7 @@
         $("#uploadFiles").on("change",function(){
             var r= new FileReader();
             f=$('.fileInput')[0].files[0];
+            console.log(f);
             r.readAsDataURL(f);
             r.onload=function (e) {
                $(".pics").attr("src",this.result);

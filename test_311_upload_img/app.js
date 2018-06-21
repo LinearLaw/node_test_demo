@@ -67,7 +67,7 @@ app.post("/uploadPics",(req,res)=>{
     }catch(err){
         res.send({
             code:-1,
-            msg:"Internal Server Error"
+            msg:"Internal Server Error",
             data:err
         })
     }
