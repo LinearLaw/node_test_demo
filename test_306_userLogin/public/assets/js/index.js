@@ -27,6 +27,7 @@
             data:s,
             success:function(res){
                 console.log("success",res);
+                location.href = "/html";
             },
             error:function(err){
                 console.log(err)
