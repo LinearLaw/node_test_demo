@@ -27,7 +27,7 @@ const md5Create = {
         return md5(userId + timenow + idCreate.orangeSignal());
     }
 }
-
+const reg = /^[A-Za-z0-9]{6,16}$/;
 module.exports = {
   //1、端口号
   port : 3003,
@@ -56,5 +56,7 @@ module.exports = {
 
   //6、接受的ip
   ipWithGet:"http://127.0.0.1:8090",
+
+  reg:reg
 
 }

@@ -5,6 +5,20 @@ exports.doRegist = (req,res)=>{
     let acc = req.body.userAccount;
     let pwd = config.md5Create.pwdCreate(req.body.pwd);
     let name = req.body.username;
+    if(!acc || !pwd || !name){
+        res.send({
+            code:4,
+            msg:"please fill all input"
+        });
+        return;
+    }
+    if(!config.reg.test(acc) || !config.reg.test(pwd)){
+        res.send({
+            code:3,
+            msg:"Account or password error"
+        })
+        return;
+    }
     User.find({username:name},(err,result)=>{
         try{
             if(result.length>0){
@@ -46,8 +60,22 @@ exports.doLogin = (req,res)=>{
     //{ userAccount:"" , pwd:"" }
     let acc = req.body.userAccount;
     let pwd = config.md5Create.pwdCreate(req.body.pwd);
+    if(!acc || !pwd ){
+        res.send({
+            code:4,
+            msg:"please fill all input"
+        });
+        return;
+    }
+    if(!config.reg.test(acc) || !config.reg.test(pwd)){
+        res.send({
+            code:3,
+            msg:"Account or password error"
+        })
+        return;
+    }
     User.find({userAccount:acc},(err,result)=>{
-        // try{
+        try{
             if(result.length>0){
                 if(result[0].userPwd == pwd){
                     let userId = result[0].userId;
@@ -76,12 +104,12 @@ exports.doLogin = (req,res)=>{
                     msg:"Account not exist"
                 })
             }
-        // }catch(err){
-        //     res.send({
-        //         code:-1,
-        //         msg:"Interval Server Error",
-        //         data:err
-        //     })
-        // }
+        }catch(err){
+            res.send({
+                code:-1,
+                msg:"Interval Server Error",
+                data:err
+            })
+        }
     })
 }
