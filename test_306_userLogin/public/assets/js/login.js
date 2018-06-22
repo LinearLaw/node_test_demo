@@ -3,7 +3,10 @@
         a:/^[A-Za-z0-9]{6,16}$/,
         p:/^[A-Za-z0-9]{6,16}$/
     };
-
+    function errorMsgHide(){
+        $("#js-flash-container").hide();
+        $("#js-flash-container_2").hide();
+    }
 
     //登录按钮
     $(".submit-btn").click(function(){
@@ -26,8 +29,13 @@
             method:"POST",
             data:s,
             success:function(res){
-                console.log("success",res);
-                location.href = "/html";
+                if(res.code == 1){
+                    console.log("success",res);
+                    $cookie.set("UIN",JSON.stringify(res.data));
+                    location.href = "/html";
+                }else{
+                    console.log(res);
+                }
             },
             error:function(err){
                 console.log(err)
@@ -37,10 +45,15 @@
 
     //关闭登录的错误提示框
     $(".close-msg").click(function(){
-        $("#js-flash-container").hide();
+        errorMsgHide();
+    })
+    //关闭注册的错误提示框
+    $(".signup-msg").click(function(){
+        errorMsgHide();
     })
     //关闭注册弹框
     $(".close-signup").click(function(){
+        errorMsgHide();
         $(".signUpBox").css("opacity",0);
         setTimeout(function(){
             $(".signUpBox").hide();
@@ -48,10 +61,6 @@
                 "opacity":1
             });
         },300)
-    })
-    //关闭注册的错误提示框
-    $(".signup-msg").click(function(){
-        $("#js-flash-container_2").hide();
     })
 
     //弹出注册框
@@ -91,8 +100,12 @@
             data:s,
             success:function(res){
                 $(".signUpBox").hide();
-                alert("success!");
-                console.log("success",res);
+                console.log(res);
+                if(res.code == 1){
+                    alert("success!");
+                }else{
+
+                }
             },
             error:function(err){
                 console.log(err);
