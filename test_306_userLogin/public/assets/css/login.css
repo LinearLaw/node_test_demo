@@ -108,7 +108,7 @@ button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:bold}but
 }
 .signUpBox .application-main{
     position:absolute;
-    top:10%;
+    top:5%;
     left:50%;
     transform:translateX(-50%);
     width:400px;
