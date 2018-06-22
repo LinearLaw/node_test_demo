@@ -1,9 +1,9 @@
-(function(){
+(function(window){
     var reg = {
         a:/^[A-Za-z0-9]{6,16}$/,
         p:/^[A-Za-z0-9]{6,16}$/
     };
-    
+
 
     //登录按钮
     $(".submit-btn").click(function(){
@@ -27,14 +27,13 @@
             data:s,
             success:function(res){
                 console.log("success",res);
-                location.href("/html");
             },
             error:function(err){
                 console.log(err)
             }
         })
     })
-    
+
     //关闭登录的错误提示框
     $(".close-msg").click(function(){
         $("#js-flash-container").hide();
@@ -100,4 +99,4 @@
         })
     })
 
-})();
+})(window);
