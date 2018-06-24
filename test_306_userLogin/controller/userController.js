@@ -113,3 +113,19 @@ exports.doLogin = (req,res)=>{
         }
     })
 }
+
+//验证登录状态，
+//策略是：前端收到 -1 未授权时，表明当前没有登陆，强制跳登录页。
+exports.getAuth = (req,res)=>{
+    if(!req.session.UID || !req.session.TID){
+        res.send({
+            code:-1,
+            msg:"login status lose efficacy"
+        })
+    }else{
+        res.send({
+            code:1,
+            msg:"auth pass"
+        })
+    }
+}
