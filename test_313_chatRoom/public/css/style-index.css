@@ -239,7 +239,7 @@ div {
   padding-left: 1.2rem;
   padding-right: 0.8rem;
   position: relative;
-  
+
 }
 .layout .comment-area .comment-item .exitChatBox{
   text-align: center;
@@ -251,7 +251,7 @@ div {
   background:#c1c1c1;
   color:#555;
   border-radius:5px;
-  
+
 }
 .layout .comment-area .comment-item .exitChat .exitName{
   color:#4a4a4a;
@@ -434,12 +434,11 @@ div {
 }
 
 .plContent img {
-  width: 0.4rem;
+  width: 0.34rem;
 }
 
 /* 新增的点赞样式 */
 .dianzan .alreadyThumps {
-  width: 0.28rem;
   display: none;
 }
 .dianzan.active .thumpBtn {
@@ -474,7 +473,7 @@ div {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,.3);
   box-sizing: border-box;
-  
+
 }
 .el-dialog__header {
   padding: 20px;
