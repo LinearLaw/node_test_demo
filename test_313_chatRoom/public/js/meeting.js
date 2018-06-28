@@ -1,6 +1,6 @@
 
 var userName; // 用户名
-var socket = io();
+var socket;
 
 // 输入名字
 $(".el-button--primary").click(function(){
@@ -13,16 +13,99 @@ $(".el-button--primary").click(function(){
     userName = inputVal;
     $(".userInfo").show();
     $(".userInfoName").html("ID: "+userName);
+    allFunc();
 })
 
-//按回车自动提交
-$(document).keyup(function(event){
-    switch(event.keyCode) {
-        case 13:
-            report();
-            return;
-    }
-})
+function allFunc(){
+    socket = io();
+    //按回车自动提交
+    $(document).keyup(function(event){
+        switch(event.keyCode) {
+            case 13:
+                report();
+                return;
+        }
+    })
+    //用户离开room
+    $(window).bind('beforeunload', function(){
+        socket.emit("exit",{
+            userName:userName
+        })
+    })
+
+    //发出消息，连接推送
+    socket.on('connect', function () {
+        socket.emit('join', {
+            userName:userName,
+        });
+    });
+
+    //发出消息，评论
+    socket.on("pinglun", function (msg) {
+        var userSingleWord = userName.slice(userName.length-1 , userName.length);
+        var data = {
+            userSingleWord:userSingleWord,
+            userName:msg.userName + "",
+            time:msg.time,
+            content:msg.inputVal,
+            nowTime:msg.nowTime
+        }
+        var html = template("cmtTpl",data);
+
+        var count = $(".comment-area").children(".comment-item").length;
+        //释放内存
+        if(count>100){
+            $(".comment-area").children(".comment-item").eq(0).remove();
+        }
+        $(".comment-area").append(html);
+        $(".comment-area").scrollTop($(".comment-area")[0].scrollHeight);
+    });
+
+
+    var dianzanLimit = 100000000;
+    //收到消息，点赞数据更新
+    socket.on("dianzanTotal", function (msg) {
+        var nowtime = msg.nowtime;
+        var dianzan = msg.dianzan;
+        if(parseInt(dianzan) >= dianzanLimit){
+            $(".comment-item[nowtime=" + nowtime + "]").find(".dianzan em").text(dianzanLimit - 1 + " +");
+        }else{
+            $(".comment-item[nowtime=" + nowtime + "]").find(".dianzan em").text(dianzan);
+        }
+    });
+
+    //收到消息，当前已连接
+    socket.on("userConnect",function(msg){
+        var obj = {
+            infoTop:msg.info + "，当前用户 ",
+            infoMiddle:msg.userCount,
+            infoBottom:" 人"
+        }
+        var html = template("onePsnLink",obj);
+        $(".comment-area").append(html);
+        $(".comment-area").scrollTop($(".comment-area")[0].scrollHeight);
+    })
+
+    //收到消息，用户退出房间
+    socket.on("userExit",function(msg){
+        var obj = {
+            infoTop:"用户 ",
+            infoMiddle:msg.userName,
+            infoBottom:" 退出了房间"
+        }
+        var html = template("onePsnLink",obj);
+        $(".comment-area").append(html);
+        $(".comment-area").scrollTop($(".comment-area")[0].scrollHeight);
+    })
+
+
+    //退出聊天室
+    socket.on("deleteHourse",function(msg){
+        //msg = { userName }
+
+    })
+}
+
 
 /**
  * @desc 按钮点击发表评论
@@ -31,7 +114,7 @@ function report(e) {
     var nowTime = new Date().getTime();
     var inputVal = $(".form-comment input").val().trim();
     if (inputVal == "") {
-        // toast('请输入发表内容');
+        toast('请输入发表内容');
         return;
     };
     socket.emit("fabiao", {
@@ -45,50 +128,8 @@ function report(e) {
 function plContent(){
 
 }
-//广播评论
-socket.on("pinglun", function (msg) {
-    var userName = msg.userName + "";
-    var content = msg.inputVal;
-    var time = msg.time;
-    var nowTime = msg.nowTime;
-    var userSingleWord = userName.slice(userName.length-1 , userName.length);
 
-    var html = '<div class="comment-item" nowtime="' + nowTime + '">' +
-                    '<a href="#" class="avatar noAvatar">' +
-                        // '<img src="../img/audio03.png" alt="">' +
-                        '<span>'+ userSingleWord +'</span>'+
-                    '</a>' +
-                    '<div class="content">' +
-                        '<div class="from">' +
-                            '<span class="name">' + userName + '</span>' +
-                            '<span class="date">' + time + '</span>' +
-                        '</div>' +
-                        '<div class="message">' + content +
-                            '<div class="sayContent">' +
-                                '<span class="dianzan" onclick="dianzan(this)" nowtime="' + nowTime + '">' +
-                                    '<img class="thumpBtn" src="../img/zan.png">' +
-                                    '<img class="alreadyThumps" src="../img/zan1.png" alt="">'+
-                                    '<em>0</em>' +
-                                '</span>' +
-                                '<span class="plContent" onclick="plContent(this)">' +
-                                    '<img src="../img/edit.png">' +
-                                    '<em>评论</em>' +
-                                '</span>' +
-                            '</div>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>';
-    var count = $(".comment-area").children(".comment-item").length;
-    //释放内存
-    if(count>100){
-        $(".comment-area").children(".comment-item").eq(0).remove();
-    }
-    $(".comment-area").append(html);
-    $(".comment-area").scrollTop($(".comment-area")[0].scrollHeight);
-});
-
-
-//发出点赞socket
+//发出消息，点赞
 function dianzan(this_) {
     var nowtime = $(this_).attr("nowtime");
     socket.emit("dianzan", {
@@ -96,37 +137,3 @@ function dianzan(this_) {
         "dianzan": parseInt($(this_).find("em").text()),
     });
 };
-
-var dianzanLimit = 100000000;
-//接收点赞推送
-socket.on("dianzanTotal", function (msg) {
-    var nowtime = msg.nowtime;
-    var dianzan = msg.dianzan;
-    if(parseInt(dianzan) >= dianzanLimit){
-        $(".comment-item[nowtime=" + nowtime + "]").find(".dianzan em").text(dianzanLimit - 1 + " +");
-    }else{
-        $(".comment-item[nowtime=" + nowtime + "]").find(".dianzan em").text(dianzan);
-    }
-});
-
-//退出聊天室
-socket.on("deleteHourse",function(msg){
-    //msg = { userName }
-
-})
-
-//获取当前连接数
-socket.on("userConnect",function(msg){
-    var count = msg.userCount;
-    var html = '<div class="comment-item">'+
-                '<div class="exitChatBox">'+
-                    '<span class="exitChat">'+
-                        '<span>当前用户 </span>'+
-                        '<span class="exitName">'+count+'</span>'+
-                        '<span> 人</span>'+
-                    '</span>'+
-                '</div>'+
-            '</div>'
-    $(".comment-area").append(html);
-    $(".comment-area").scrollTop($(".comment-area")[0].scrollHeight);
-})

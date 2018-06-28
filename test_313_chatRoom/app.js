@@ -22,10 +22,6 @@ let apiSocket = require("./api/apiSocket.js");
 
 io.on("connection",function(socket){
     apiSocket.apiSocket(socket);
-    let count = io.eio.clientsCount;
-    io.emit("userConnect",{
-        userCount:count
-    })
 });
 
 
