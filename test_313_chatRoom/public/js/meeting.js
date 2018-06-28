@@ -67,10 +67,11 @@ function allFunc(){
     socket.on("dianzanTotal", function (msg) {
         var nowtime = msg.nowtime;
         var dianzan = msg.dianzan;
+
         if(parseInt(dianzan) >= dianzanLimit){
-            $(".comment-item[nowtime=" + nowtime + "]").find(".dianzan em").text(dianzanLimit - 1 + " +");
+            $(".dianzan[nowtime=" + nowtime + "]").find("em").text(dianzanLimit - 1 + " +");
         }else{
-            $(".comment-item[nowtime=" + nowtime + "]").find(".dianzan em").text(dianzan);
+            $(".dianzan[nowtime=" + nowtime + "]").find("em").text(dianzan);
         }
     });
 

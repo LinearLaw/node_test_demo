@@ -16,7 +16,6 @@ exports.apiSocket = (socket)=> {
    socket.on('join', function (info) {
        //当前链接数
        let count = io.eio.clientsCount;
-
        /*单房间，通知房间内人员 */
        io.emit('userConnect', {
            userCount:count,
@@ -26,35 +25,27 @@ exports.apiSocket = (socket)=> {
 
     socket.on("fabiao",function(msg){
        let time = getTimeNow();
-       let nowTime = msg.nowTime;
-       let inputVal = msg.inputVal;
-       let userName = msg.userName;
 
        io.emit("pinglun",{
-          inputVal:inputVal,
-          userName:userName,
+          inputVal:msg.inputVal,
+          userName: msg.userName,
           time:time,
-          nowTime:nowTime
+          nowTime:msg.nowTime
        });
     });
 
    //点赞
     socket.on("dianzan",function(msg){
-        let nowtime = msg.nowtime;
-        let dianzan = msg.dianzan;
-
-        dianzan ++ ;//点赞
         io.emit("dianzanTotal",{
-           nowtime:nowtime,
-           dianzan:dianzan
+           nowtime:msg.nowtime,
+           dianzan:msg.dianzan++
        });
     });
 
-    //退出会议
+    //退出聊天室
     socket.on("exit",function(msg){
-        var userName = msg.userName;
         io.emit("userExit",{
-            userName:userName
+            userName:msg.userName
         })
     })
 };

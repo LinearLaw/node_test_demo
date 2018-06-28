@@ -42,7 +42,7 @@
 
         <!-- template 1  commentTpl-->
         <script type="text/html" id="cmtTpl">
-            <div class="comment-item" nowtime="' + nowTime + '">
+            <div class="comment-item" nowtime="{{nowTime}}">
                 <a href="#" class="avatar noAvatar">
                     <span> {{userSingleWord}} </span>
                 </a>
@@ -54,7 +54,7 @@
                     <div class="message">
                         {{content}}
                         <div class="sayContent">
-                            <span class="dianzan" onclick="dianzan(this)" nowtime=" {{nowTime}} ">
+                            <span class="dianzan" onclick="dianzan(this)" nowtime="{{nowTime}}">
                                 <img class="thumpBtn" src="../img/zan.png">
                                 <img class="alreadyThumps" src="../img/zan1.png" alt="">
                                 <em>0</em>
