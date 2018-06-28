@@ -98,15 +98,7 @@ function allFunc(){
         $(".comment-area").append(html);
         $(".comment-area").scrollTop($(".comment-area")[0].scrollHeight);
     })
-
-
-    //退出聊天室
-    socket.on("deleteHourse",function(msg){
-        //msg = { userName }
-
-    })
 }
-
 
 /**
  * @desc 按钮点击发表评论
@@ -127,7 +119,7 @@ function report(e) {
 };
 
 function plContent(){
-
+    $(".form-btn input").focus();
 }
 
 //发出消息，点赞
