@@ -28,8 +28,12 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "express-session": "^1.15.6",
     "iconv-lite": "^0.4.23",
-    "request": "^2.85.0"
+    "multer": "^1.3.1",
+    "request": "^2.85.0",
+    "socket.io": "^2.1.1"
   }
 }

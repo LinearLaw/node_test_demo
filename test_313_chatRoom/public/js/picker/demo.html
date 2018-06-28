@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>date demo</title>
+	<style type="text/css">
+		strong{
+			font-size: 15px;
+		}
+		pre{
+			padding: 16px 0;
+			line-height: 1.45;
+			background-color: #f6f8fa;
+			border-radius: 3px;
+		}
+	</style>
+</head>
+<body>
+	<pre>
+	<strong>jquery-date.js</strong>
+
+	 <b>配置：</b>
+	 //不填则使用默认配置
+	 data-options="{'type':'YYYY-MM-DD hh:mm:ss','beginYear':2010,'endYear':2088}"
+
+	 <b>调用方式：</b>
+	 $.date('#date');
+
+	 <b>参数说明：</b>
+	 type--支持的格式
+	//年月日 时分秒
+	['YYYY-MM-DD hh:mm:ss','YY-MM-DD hh:mm:ss','YYYY/MM/DD hh:mm:ss','YY/MM/DD hh:mm:ss']
+	//年月日 时分
+	['YYYY-MM-DD hh:mm','YY-MM-DD hh:mm','YYYY/MM/DD hh:mm','YY/MM/DD hh:mm']
+	//年月日
+	['YYYY-MM-DD','YY-MM-DD','YYYY/MM/DD','YY/MM/DD']
+	//年月
+	['YYYY-MM','YY-MM','YYYY/MM','YY/MM']
+	//时分秒 时分
+	['hh:mm:ss','hh:mm']
+
+	beginYear -- 开始年份
+
+	endYear -- 结束年份，可不填，默认不会小于当前
+
+	limitTime--可选 today：今天之前的日期不可选 tomorrow：明天之前的不可选
+	
+	location--可选 before：跳转至之前选择的时间
+	</pre>
+	<h3>演示</h3>
+	<hr>
+	年月
+	<br>
+	<input type="text" id="date" data-options="{'type':'YYYY-MM','beginYear':2010,'endYear':2088}" style="width:166px;height:19px;">
+	<hr>
+	年月日
+	<br>
+	<input type="text" id="date2" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088}" style="width:166px;height:19px;">
+	<hr>
+	年月日 时分
+	<br>
+	<input type="text" id="date3" data-options="{'type':'YYYY-MM-DD hh:mm','beginYear':2010,'endYear':2088}" style="width:166px;height:19px;">
+	<hr>
+	年月日 时分秒
+	<br>
+	<hr>
+	时分秒
+	<br>
+	<button type="button" id="date7" data-options="{'type':'hh:mm:ss','beginYear':2010,'endYear':2088,'location':'before'}" style="width:170px;height:25px;vertical-align: middle;text-align: left;"></button>
+	<hr>
+	时分
+	<br>
+	<button type="button" id="date8" data-options="{'type':'hh:mm','beginYear':2010,'endYear':2088}" style="width:170px;height:25px;vertical-align: middle;text-align: left;"></button>
+	<hr>
+	时间限制
+	<br>
+	<button type="button" id="date5" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088,'limitTime':'today'}" style="width:170px;height:25px;vertical-align: middle;text-align: left;"></button>
+	<hr>
+	跳转至之前选择的时间
+	<br>
+	<button type="button" id="date6" data-options="{'type':'YYYY-MM-DD','beginYear':2010,'endYear':2088,'location':'before'}" style="width:170px;height:25px;vertical-align: middle;text-align: left;"></button>
+	<br>
+	<br>
+	<br>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="jquery.date.js"></script>
+	<script>
+		$.date('#date');
+		$.date('#date2');
+		$.date('#date3');
+		$.date('#date4');
+		$.date('#date5');
+		$.date('#date6');
+		$.date('#date7');
+		$.date('#date8');	
+	</script>
+</body>
+</html>

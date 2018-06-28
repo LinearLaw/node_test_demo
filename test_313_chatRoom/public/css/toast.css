@@ -1,0 +1,26 @@
+   .toast-wrap{
+      opacity: 1;
+      position: fixed;
+      top:46%;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      display:none;
+   }
+   .toast-msg{
+      background-color: rgba(0,0,0,0.7);
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 0.3rem;
+   }
+
+  .toastAnimate{
+      display:block!important;
+  }
+  /* @keyframes toastKF{
+      0% {opacity: 0;}
+     25% {opacity: 1; z-index: 9999}
+     50% {opacity: 1; z-index: 9999}
+     75% {opacity: 1; z-index: 9999}
+     100% {opacity: 0; z-index: 0}
+  } */

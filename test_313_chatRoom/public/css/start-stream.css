@@ -1,0 +1,314 @@
+body,html{
+    width:100%;
+    height:100%;
+}
+
+.hideStream{
+    display:none;
+}
+
+
+/* title */
+.pageTitle{
+    height:1rem;
+    width:100%;
+    background:#2176AF;
+    text-align: center;
+    position:relative;
+    font-size:0.36rem;
+    line-height:1rem;
+    color:#fff;
+}
+.pageTitle .backBtn{
+    width:0.6rem;
+    height:auto;
+    padding:0.1rem 0.2rem;
+    position:absolute;
+    left:0rem;
+    top:50%;
+    transform:translateY(-50%);
+}
+.pageTitle img{
+    width:100%;
+    height:auto;
+}
+
+/* content */
+.streamInfo{
+    padding:0.2rem 0.4rem;
+    width:100%;
+}
+.headerPics{
+    margin-bottom:0.3rem;
+    position: relative;
+}
+.headerPics .noPics{
+    padding:1.15rem 0;
+    background:#3d3d3d;
+    text-align:center;
+    color:#fff;
+    font-size:0.3rem;
+}
+.headerPics .noPics img{
+    width:0.94rem;
+    margin-bottom:0.25rem;
+}
+.headerPics .hasPics{
+    width:100%;
+    height:auto;
+}
+.headerPics .hasPics img{
+    width:100%;
+    height:auto;
+}
+
+/* 列表 */
+.inputInfoArea{
+    width:100%;
+}
+.meetingTitle{
+    width:100%;
+    padding:0.2rem 0;
+    position:relative;
+    padding-left:1.5rem;
+    font-size:0.3rem;
+    line-height:0.3rem;
+}
+.meetingTitle span{
+    position:absolute;
+    top:50%;
+    left:0;
+    transform:translateY(-50%);
+}
+.meetingTitle .inputMetting{
+    overflow: hidden;
+    padding:0.3rem;
+    border-bottom:1px solid #e2e2e1;
+}
+.meetingTitle input{
+
+    border:0;
+}
+.meetingTime{
+    width:100%;
+    height:0.8rem;
+    line-height:0.8rem;
+    padding-left:0.3rem;
+    color:#999;
+    border:1px solid #e2e2e1;
+}
+input,button,select,textarea{outline:none;}
+
+
+/* 开始直播按钮 */
+.startMeetingBtn{
+    padding:0 0.6rem;
+    margin-top:1rem;
+}
+.startMeetingBtn button{
+    border:0;
+    background-color:#2176AF;
+    color:#fff;
+    font-size:0.32rem;
+    padding:0.2rem;
+    width:100%;
+    border-radius:5px;
+}
+
+.bgBox{
+    width:100%;
+    height:200px;
+    overflow: hidden;
+    position: relative;
+}
+.bgBox .topShadow{
+    width:100%;    
+    height:40px;
+    position:absolute;
+    top:0;
+    left:0;
+    background: linear-gradient(to bottom, white, transparent);
+    z-index: 100;
+}
+.bgBox .bottomShadow{
+    width:100%;    
+    height:40px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background: linear-gradient(to top, white, transparent);
+    z-index: 100;
+}
+.bgBox .textTo{
+    position:absolute;
+    top:50%;
+    right:20%;
+    transform:translate(50%,-50%);
+    font-size:0.2rem;
+    color:#2e2e2e;
+}
+#d-content #d-bg{
+    font-size:0.3rem;
+}
+#d-tit{
+    font-size:0.2rem;
+    color:#2e2e2e;
+}
+#date-wrapper{display:block;}
+/* 时间选择控件 */
+    /* .timePicker{
+        width:100%;
+        height:5.4rem;
+        padding:0 0.3rem;
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .timePicker ul{
+        height:100%;
+    }
+    .timePicker li{
+        width:20%;
+        height:100%;
+        float:left;
+    }
+
+    .picker-mask {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: .1;
+        z-index: 998;
+    }
+    .picker-container {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        padding: 27px 0;
+        background-color: #0A52BE;
+        box-sizing: border-box;
+        color: #fff;
+        z-index: 9999;
+    }
+    .picker-area {
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        background-color: inherit;
+    }
+    .picker-area dl {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+    }
+    .picker-area dl dd {
+        height: 0.5rem;
+        text-align: center;
+        font-family: "微软雅黑";
+        line-height: 0.5rem;
+        font-size: 0.2rem;
+    }
+    .picker-view {
+        position: absolute;
+        top: 100px;
+        width: 100%;
+        height: 0.5rem;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        z-index: 998;
+    }
+
+    .picker-ensure {
+        position: absolute;
+        height: 35px;
+        line-height: 35px;
+        padding: 0 20px;
+        right: 0;
+        bottom: 0;
+        font-weight: bold;
+        display:none;
+    }
+    .picker-cancel {
+        position: absolute;
+        height: 35px;
+        line-height: 35px;
+        padding: 0 20px;
+        left: 0;
+        bottom: 0;
+        font-weight: bold;
+        display:none;
+    } */
+
+    .fileInput{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        opacity: 0;
+    }
+
+    .pics{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+    .meetingTitle>div{
+        display: inline-block;
+    }
+    .female{
+        margin-left: 0.5rem;
+    }
+    .male{
+        margin-left: 0.3rem;
+    }
+
+    .pageTitle{
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2
+    }
+    body{
+        padding-top: 1.2rem
+    }
+   
+   .joinPeople{
+     display: inline-block;
+     padding: 2px 10px;
+     background: #2176AF;
+     color: white;
+     margin-right: 0.2rem;
+     border-radius: 2px;
+     position: relative;
+     margin-bottom: 6px;
+   }
+   .joinPeople .close{
+     position: absolute;
+     top: -4px;
+     right: -2px;
+     display:block;
+     width: 1rem;
+     height: 1rem;
+     text-align: right;
+   }
+   .select{
+     display: inline-block;
+     padding: 3px;
+     background: #01cd78;
+     color: white;
+     border-radius: 2px;
+   }
+   .defaultAll{
+      font-size: 0.24rem;
+      margin-left: 0.2rem;
+   }

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Area</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../css/style-index.css" />
+    <link rel="stylesheet" type="text/css" href="../css/toast.css" />
+    <link rel="stylesheet" type="text/css" href="../css/video/video-js.css" />
+    
+    <style type="text/css">
+        .toast-wrap {
+            z-index: 45
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toast-wrap">
+        <span class="toast-msg"></span>
+    </div>
+    <div class="layout">
+        <div class="comment-input" style="bottom: 0;top: auto;">
+            <div class="form-comment">
+                <input type="text" placeholder="说两句">
+            </div>
+            <div class="form-btn" onclick="report()">
+                <input value="发表" type="button">
+            </div>
+        </div>
+        <div class="userInfo">
+            <span class="userInfoName"></span>
+            <!-- <span class="roomInfoNum">10002房间</span> -->
+        </div>
+        <div class="comment-area">
+            <!-- <div class="comment-item">
+                <div class="exitChatBox">
+                    <span class="exitChat">
+                        <span class="exitName">xxx</span>
+                        <span>离开了聊天室</span>
+                    </span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="shadowBox">
+        <div class="shadow"></div>
+        <div class="el-dialog">
+            <div class="el-dialog__header">
+                <span class="el-dialog__title">请输入名字</span>
+            </div>
+            <div class="el-dialog__body form-comment">
+                <input type="text" class="userName" />
+            </div>
+            <div class="el-dialog__footer">
+                <span class="dialog-footer">
+                    <button type="button" class="el-button el-button--primary">
+                        <span>确 定</span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script type="text/javascript" src="../js/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/fastclick.js"></script>
+
+<script type="text/javascript" src="../js/toast.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="../js/meeting.js"></script>
+<script>
+    //fastclick绑定
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function () {
+            FastClick.attach(document.body);
+        }, false);
+    }
+    //换单位 px ——> rem
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+                if (docEl.style.fontSize.replace(/px/, '') > 100) docEl.style.fontSize = '100px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+
+
+</html>
