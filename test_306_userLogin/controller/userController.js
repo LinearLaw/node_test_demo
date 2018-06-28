@@ -46,6 +46,7 @@ exports.doRegist = (req,res)=>{
                 });
             }
         }catch(err){
+            console.log(err);
             res.send({
                 code:-1,
                 msg:"Interval Server Error",
@@ -105,6 +106,7 @@ exports.doLogin = (req,res)=>{
                 })
             }
         }catch(err){
+            console.log(err);
             res.send({
                 code:-1,
                 msg:"Interval Server Error",
