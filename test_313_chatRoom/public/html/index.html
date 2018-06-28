@@ -11,8 +11,7 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" type="text/css" href="../css/style-index.css" />
     <link rel="stylesheet" type="text/css" href="../css/toast.css" />
-    <link rel="stylesheet" type="text/css" href="../css/video/video-js.css" />
-    
+
     <style type="text/css">
         .toast-wrap {
             z-index: 45
@@ -70,18 +69,10 @@
 
 </body>
 <script type="text/javascript" src="../js/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../js/fastclick.js"></script>
-
 <script type="text/javascript" src="../js/toast.js"></script>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="../js/meeting.js"></script>
 <script>
-    //fastclick绑定
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function () {
-            FastClick.attach(document.body);
-        }, false);
-    }
     //换单位 px ——> rem
     (function (doc, win) {
         var docEl = doc.documentElement,
