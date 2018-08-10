@@ -20,18 +20,22 @@ app.use(function (req, res, next) {
 app.post("/upload",(req,res)=>{
   let form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
-      console.log(files.name);
-      const dataBuffer = files;
+      console.log(files["file"]);
+      // const dataBuffer = new Buffer(files["file"]);
 
-      const dir = path.resolve(__dirname) +'/public/'+files.name;
-      fs.writeFile(dir,dataBuffer, (err)=>{
-          let imgPath = files.originalFilename
-          res.send({
-              code:1,
-              data:imgPath
-          })
-      })
-
+      const dir = './public/'+files["file"].name;
+      fs.readFile(files["file"].path, function (err,data) {
+         if(err) res.send("读文件操作失败");
+         else{
+            fs.writeFile(dir , data, (err)=>{
+                let imgPath = files["file"].name
+                res.send({
+                    code:1,
+                    data:imgPath
+                })
+            })
+         }
+     });
   })
 
 
