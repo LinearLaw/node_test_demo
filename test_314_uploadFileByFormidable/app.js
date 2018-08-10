@@ -1,10 +1,16 @@
 const express = require("express");
 const app = express();
+
 const path = require("path");
-
 const fs = require("fs");
-
 const formidable = require("formidable");
+
+//md5验证文件
+const crypto = require("crypto");
+function getmd5(data){
+  const md5 = crypto.createHash("md5");
+  return md5.update(data).digest("base64");
+}
 
 app.use(express.static("./public"));
 
@@ -20,25 +26,26 @@ app.use(function (req, res, next) {
 app.post("/upload",(req,res)=>{
   let form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
-      console.log(files["file"]);
-      // const dataBuffer = new Buffer(files["file"]);
 
-      const dir = './public/'+files["file"].name;
       fs.readFile(files["file"].path, function (err,data) {
          if(err) res.send("读文件操作失败");
          else{
-            fs.writeFile(dir , data, (err)=>{
+            let name = getmd5(data);
+            let arrName = files["file"].name.split(".");
+            let extensionName = arrName[arrName.length - 1];
+            let dir =  "/"+name +"."+ extensionName;
+            fs.writeFile( './public'+ dir, data, (err)=>{
                 let imgPath = files["file"].name
                 res.send({
                     code:1,
-                    data:imgPath
+                    md: name,
+                    filepath:dir
                 })
             })
          }
      });
+
   })
-
-
 })
 
 app.listen(1234,function(){
