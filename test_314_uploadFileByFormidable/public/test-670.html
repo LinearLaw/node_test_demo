@@ -34,13 +34,14 @@
             <div class="line"><div class="innerLine" id="innerLine"></div></div>
         </div> -->
     </div>
-    
+    <script>
 
+    </script>
     <script type='text/javascript'>
         var lineBox = document.getElementsByClassName('lineBox')[0];
 
         //创建dom对象
-         function parseDom(str) {
+        function parseDom(str){
         　　 var o = document.createElement("div");
         　　 o.innerHTML = str;
         　　 return o.childNodes[0];
@@ -75,6 +76,20 @@
             }, false);
             xhr.send(form);
         }
+
+        // function check(callback){
+        //     ajax({
+        //         url:"xxx"
+        //         success:function(){
+        //             imgs = xxx;
+        //             if(callback){  callback(imgs);  }
+        //         }
+        //     })
+        // }
+        // //调用的时候
+        // check(function(i){
+        //     // 拿到的i就是imgs的值
+        // })
         
     </script>
 </body>
