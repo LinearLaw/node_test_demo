@@ -32,8 +32,8 @@ app.post("/upload",(req,res)=>{
          else{
             let name = getmd5(data);
             let arrName = files["file"].name.split(".");
-            let extensionName = arrName[arrName.length - 1];
-            let dir =  "/"+name +"."+ extensionName;
+            let extensionName =  arrName[arrName.length - 1] || "jpg";
+            let dir = "/" + name + "." + extensionName;
             fs.writeFile( './public'+ dir, data, (err)=>{
                 let imgPath = files["file"].name
                 res.send({
