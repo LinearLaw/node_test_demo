@@ -24,6 +24,7 @@ app.use(function (req, res, next) {
 
 
 app.post("/upload",(req,res)=>{
+  console.log("接收到了文件，时间："+new Date());
   let form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
 
