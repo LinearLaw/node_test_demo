@@ -49,6 +49,12 @@ app.post("/upload", (req, res) => {
     })
 })
 
+app.get("/returnjson",(req,res)=>{
+    res.send({
+        data:"success"
+    })
+})
+
 app.listen(1234, function() {
     console.log("就绪，端口号1234")
 })
