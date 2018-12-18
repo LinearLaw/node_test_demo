@@ -14,6 +14,7 @@ function getmd5(data) {
 }
 
 app.use(express.static("./public"));
+app.use(express.static("./dist"));
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*"); //必须重新设置，把origin的域加上去
@@ -49,9 +50,11 @@ app.post("/upload", (req, res) => {
     })
 })
 
-app.get("/returnjson",(req,res)=>{
+app.get("/wsxd-crm/crmUser/list",(req,res)=>{
+    console.log(req);
     res.send({
-        data:"success"
+        data:"success",
+        use:req.url
     })
 })
 
