@@ -29,7 +29,7 @@ app.post("/upload", (req, res) => {
     console.log("接收到了文件，时间：" + new Date());
     let form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
-
+        console.log(files['file']);
         fs.readFile(files["file"].path, function(err, data) {
             if (err) res.send("读文件操作失败");
             else {
