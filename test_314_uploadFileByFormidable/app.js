@@ -58,6 +58,6 @@ app.get("/wsxd-crm/crmUser/list",(req,res)=>{
     })
 })
 
-app.listen(1234, function() {
+app.listen(5432, function() {
     console.log("就绪，端口号1234")
 })
