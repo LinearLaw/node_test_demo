@@ -19,6 +19,44 @@
 
 ##  chunk、pipe、stream
 
+    1、全局对象global
+        global.process：保存了一些process、system和环境相关的一些信息。
+        global.__filename：当前执行脚本的文件名和路径。
+        global.__dirname： 当前执行脚本的绝对路径。
+        global.module： 当前模块导出的对象。
+        global.require()：导出模块的方法。
+
+        js的作用域链在nodejs中依然有效，最顶级的对象在浏览器叫做window，在nodejs中叫做global。
+
+    2、process对象
+    process对象保存了当前进程的信息
+        process.pid：进程id
+        process.versions：node\v8和其他组建的版本号
+        process.arch：系统架构
+        process.argv：命令行接口参数
+        process.env：环境变量
+        process.uptime()：获取uptime
+        process.memoryUsage()：获取占用内存
+        process.cwd()：获取当前工作目录
+        process.exit()：结束当前进程
+        process.on()：添加监听事件
+
+    3、事件触发器EventEmitter
+
+    4、stream
+    流式读写
+
+    5、管道pipe()
+    用来处理流，将当前的流呈递给下一个函数处理。
+
+    6、buffer
+    二进制数据
+
+    7、错误处理
+    try{ }catch(err){ }
+    同步情况下try catch将十分有效，异步将出问题，无法捕捉异常。
+    因此每次的回调都需要检查error → express也有类似的问题，所以koa才会引入ES6来解决异步。
+
 
 ##  单线程与事件驱动
 
