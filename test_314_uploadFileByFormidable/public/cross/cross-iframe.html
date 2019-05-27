@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>127.0.0.1:5432 -- cross-iframe</title>
+</head>
+<body>
+    <h1>127.0.0.1:5432/cross-iframe.html</h1>
+    <script>
+        /**
+         * 当前页面 处于 127.0.0.1:5432 下，
+         *     需要请求 127.0.0.1:5433 的接口
+         */
+        function test(){
+            var obj = document.getElementById("iframe");
+            obj.onload = function(){
+                var message = obj.contentWindow.name;
+                console.log(obj.contentWindow,message);
+            }
+            obj.src = "http://127.0.0.1:5432/cross/cross-iframe-middle.html";
+        }
+    </script>
+    <iframe id="iframe" src="http://127.0.0.1:5433/cross_2.html" onload="test()"></iframe>
+
+</body>
+</html>

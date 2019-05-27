@@ -17,10 +17,10 @@ app.use(express.static("./public"));
 app.use(express.static("./dist"));
 
 app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*"); //必须重新设置，把origin的域加上去
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'x-custom');
-    res.header('Access-Control-Allow-Credentials', 'true'); //和客户端对应，必须设置以后，才能接收cookie.
+    // res.header('Access-Control-Allow-Origin', "*"); //必须重新设置，把origin的域加上去
+    // res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    // res.header('Access-Control-Allow-Headers', 'x-custom');
+    // res.header('Access-Control-Allow-Credentials', 'true'); //和客户端对应，必须设置以后，才能接收cookie.
     next();
 })
 
@@ -56,8 +56,9 @@ app.get("/wsxd-crm/crmUser/list",(req,res)=>{
         data:"success",
         use:req.url
     })
-})
+});
 
-app.listen(5432, function() {
-    console.log("就绪，端口号1234")
+const PORT = 5432;
+app.listen(PORT, function() {
+    console.log(`就绪，端口号${PORT}`);
 })
